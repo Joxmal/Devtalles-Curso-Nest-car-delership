@@ -1,9 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateCardDto } from './dto/create-cards-dto';
 import { Card } from './interfaces/car.interface';
 import { v4 as uuid } from 'uuid'
-import { UpdateCardDto } from './dto/update-cards-dto';
-
+import { UpdateCardDto,CreateCardDto } from './dto';
 @Injectable()
 export class CarsService {
 
@@ -55,18 +53,20 @@ export class CarsService {
   }
 
   updatecart(id: string, updateCardDto:UpdateCardDto) {
-    console.log(id, updateCardDto)
+    let cardDB = this.getOneCar(id)
+    const { name, price } = updateCardDto;
+    if (name) cardDB.name = name;
+    if (price) cardDB.price = price;
     return {
       message: `el carro ${id} fue actualizado`,
-      Object: updateCardDto
-    }
+      ...cardDB
+    };
   }
 
   deleteCar(id: string){
-     console.log(id)
-    const index = this.cards.findIndex((c) => c.id ===id) 
-    if (index === -1) throw new NotFoundException(`el carro ${id} no existe`)
-    this.cards.splice(index, 1)
+
+    let cardDB = this.getOneCar(id)
+    this.cards.splice(this.cards.indexOf(cardDB), 1)
     return {
       message: `el carro ${id} fue eliminado`
     }
