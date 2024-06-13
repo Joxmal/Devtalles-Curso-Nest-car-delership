@@ -23,7 +23,10 @@ export class BrandsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: ParseUUIDPipe, @Body() updateBrandDto: UpdateBrandDto) {
+  update(
+    @Param('id') id: ParseUUIDPipe,
+    @Body() updateBrandDto: UpdateBrandDto
+  ) {
     return this.brandsService.update(+id, updateBrandDto);
   }
 

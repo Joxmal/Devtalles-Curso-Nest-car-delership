@@ -9,11 +9,11 @@ import { v4 as uuid } from 'uuid'
 export class BrandsService {
 
   private brands: Brand[] =[
-    {
-      id: "77892161-59e0-45b9-bdb1-eae52a2cdc73" ,
-      name: "toyota",
-      createdAt: 1623456789,
-    }
+    // {
+    //   id: "77892161-59e0-45b9-bdb1-eae52a2cdc73" ,
+    //   name: "toyota",
+    //   createdAt: 1623456789,
+    // }
   ]
 
 
@@ -51,4 +51,9 @@ export class BrandsService {
   remove(id: number) {
     return `This action removes a #${id} brand`;
   }
+
+  fillBrandsWithSeedData(brands: Brand[]){
+    this.brands = brands
+    console.log(this.brands)
+ }
 }

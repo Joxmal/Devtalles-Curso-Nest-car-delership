@@ -6,21 +6,11 @@ import { UpdateCardDto,CreateCardDto } from './dto';
 export class CarsService {
 
   private cards: Card[] = [
-    {
-      id: "77892161-59e0-45b9-bdb1-eae52a2cdc73" ,
-      name: "toyota",
-      price: 100,
-    },
-    {
-      id: uuid(),
-      name: "toyota-version-new",
-      price: 200,
-    },
-    {
-      id: uuid(),
-      name: "aveo",
-      price: 150,
-    }
+    // {
+    //   id: "77892161-59e0-45b9-bdb1-eae52a2cdc73" ,
+    //   name: "toyota",
+    //   price: 100,
+    // }
   ];
 
   getAllcars() {
@@ -70,5 +60,11 @@ export class CarsService {
     return {
       message: `el carro ${id} fue eliminado`
     }
+  }
+
+
+  fillcarsWithSeedData(cars: Card[]){
+     this.cards = cars
+     console.log(this.cards)
   }
 }
